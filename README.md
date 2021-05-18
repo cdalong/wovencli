@@ -4,13 +4,11 @@ wovencli
 &#39;Command Line CLI for Interacting with Woven File Server&#39;
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/wovencli.svg)](https://npmjs.org/package/wovencli)
-[![Downloads/week](https://img.shields.io/npm/dw/wovencli.svg)](https://npmjs.org/package/wovencli)
-[![License](https://img.shields.io/npm/l/wovencli.svg)](https://github.com/cdalong/wovencli/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
+* [Issues](#issues)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -28,20 +26,18 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`wovencli deleteFile [FILE]`](#wovencli-deletefile-file)
-* [`wovencli downloadFile [FILE]`](#wovencli-downloadfile-file)
-* [`wovencli hello [FILE]`](#wovencli-hello-file)
+* [`wovencli deleteFile [userId], [DocumentType]`](#wovencli-deletefile-file)
+* [`wovencli downloadFile [userId], [DocumentType]`](#wovencli-downloadfile-file)
 * [`wovencli help [COMMAND]`](#wovencli-help-command)
-* [`wovencli listFiles [FILE]`](#wovencli-listfiles-file)
-* [`wovencli uploadFile [FILE]`](#wovencli-uploadfile-file)
+* [`wovencli listFiles`](#wovencli-listfiles-file)
+* [`wovencli uploadFile [filePath], [userId], [documentType]` ](#wovencli-uploadfile-file)
 
-## `wovencli deleteFile [FILE]`
+## `wovencli deleteFile [userId] [DocumentType]`
 
-describe the command here
-
+Deletes a File on the server from a userId and Document Key
 ```
 USAGE
-  $ wovencli deleteFile [FILE]
+  $ wovencli deleteFile [userId] [DocumentType]
 
 OPTIONS
   -f, --force
@@ -51,13 +47,12 @@ OPTIONS
 
 _See code: [src/commands/deleteFile.ts](https://github.com/cdalong/wovencli/blob/v1.0.0/src/commands/deleteFile.ts)_
 
-## `wovencli downloadFile [FILE]`
+## `wovencli downloadFile [userId] [DocumentType]`
 
-describe the command here
-
+**TODO download a file off the server
 ```
 USAGE
-  $ wovencli downloadFile [FILE]
+  $ wovencli downloadFile [userId] [DocumentType]
 
 OPTIONS
   -f, --force
@@ -73,7 +68,7 @@ describe the command here
 
 ```
 USAGE
-  $ wovencli hello [FILE]
+  $ wovencli hello
 
 OPTIONS
   -f, --force
@@ -104,13 +99,13 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `wovencli listFiles [FILE]`
+## `wovencli listFiles`
 
 describe the command here
 
 ```
 USAGE
-  $ wovencli listFiles [FILE]
+  $ wovencli listFiles
 
 OPTIONS
   -f, --force
@@ -120,13 +115,13 @@ OPTIONS
 
 _See code: [src/commands/listFiles.ts](https://github.com/cdalong/wovencli/blob/v1.0.0/src/commands/listFiles.ts)_
 
-## `wovencli uploadFile [FILE]`
+## `wovencli uploadFile [filePath], [userId], [documentType]`
 
 describe the command here
 
 ```
 USAGE
-  $ wovencli uploadFile [FILE]
+  $ wovencli uploadFile [filePath] [userId] [documentType]
 
 OPTIONS
   -f, --force
@@ -136,3 +131,13 @@ OPTIONS
 
 _See code: [src/commands/uploadFile.ts](https://github.com/cdalong/wovencli/blob/v1.0.0/src/commands/uploadFile.ts)_
 <!-- commandsstop -->
+
+# Issues
+
+Currently Credentials are being stored in plaintext in the req, somehow would like to implement some user/pass handling.
+Payloads with Upload File, Delete File somehow I can't get to work through a TypeScript payload, even modelling the requersts through Postman first. The backend will accept the request (which is a different result from the web frontend, so perhaps it would be worthwhile to switch from axios to generic http in the frontend?)
+
+So at least those those two commands don't complete, but instead will send a 400 response. listFiles seems to work but I want it to terminate instead of it just displaying the JSON and hanging (need to cntl - c to quit the view)
+
+
+
